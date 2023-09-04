@@ -10,8 +10,9 @@ public class PlayerAnimator : MonoBehaviour
    private const string LEFT_PUNCH = "LeftPunch";
    private const string RIGHT_PUNCH = "RightPunch"; 
 
+   private Animator animator;
+    
    [SerializeField] private Player player;
-   private Animator animator; 
    
    private void Awake() 
    {

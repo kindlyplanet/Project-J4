@@ -294,10 +294,10 @@ GameObject:
   - component: {fileID: 5186355418411999667}
   - component: {fileID: 5186355418411999660}
   - component: {fileID: 5053583396255783244}
-  - component: {fileID: 8495515914451348820}
+  - component: {fileID: -5337540064546617353}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   followDistance: 5
---- !u!114 &8495515914451348820
+--- !u!114 &-5337540064546617353
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5186355418411999661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbb84a978e5ef8b4f8dd3e221bfe8c3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a6fd70a8eceb1c41b60a49603259523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  maxHealth: 100

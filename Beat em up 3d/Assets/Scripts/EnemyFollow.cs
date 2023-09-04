@@ -4,33 +4,55 @@ using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
 {
-    public float moveSpeed = 5.0f;
-    public float followDistance = 10.0f; // Distancia mínima para seguir al jugador
+    [SerializeField] private float moveSpeed = 5.0f;
+    [SerializeField] private float attackRange = 2.0f;
+
     private Transform target; // Referencia al jugador encontrado
+    private bool isAttacking = false;
 
     private void Start()
     {
+        // Busca al jugador al comienzo y configura la referencia 'target'
         FindPlayer();
     }
 
     private void Update()
     {
-        if (target != null)
+        if (target != null && !isAttacking)
         {
-            Vector3 direction = target.position - transform.position;
+            float distanceToPlayer = Vector3.Distance(transform.position, target.position);
 
-            // Comprobar si el jugador está a una distancia válida para seguir
-            if (direction.magnitude <= followDistance)
+            if (distanceToPlayer <= attackRange)
             {
-                direction.Normalize();
-
-                // Rotar el enemigo para mirar hacia el jugador
-                transform.LookAt(target);
-
-                // Mover el enemigo en la dirección del jugador
-                transform.position += direction * moveSpeed * Time.deltaTime;
+                Attack();
+            }
+            else
+            {
+                Chase();
             }
         }
+    }
+
+    private void Chase()
+    {
+        if (target != null)
+        {
+            Vector3 direction = (target.position - transform.position).normalized;
+
+            transform.Translate(direction * moveSpeed * Time.deltaTime);
+
+            transform.LookAt(target.position);
+        }
+    }
+
+    private void Attack()
+    {
+        isAttacking = true;
+    }
+
+    private void EndAttack()
+    {
+        isAttacking = false;
     }
 
     private void FindPlayer()
@@ -39,6 +61,10 @@ public class EnemyFollow : MonoBehaviour
         if (player != null)
         {
             target = player.transform;
+        }
+        else
+        {
+            Debug.LogError("No se pudo encontrar al jugador. Asegúrate de que el jugador tenga el tag 'Player'.");
         }
     }
 }

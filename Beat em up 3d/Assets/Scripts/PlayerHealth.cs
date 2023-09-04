@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    private int currentHealth;
+    public GameOverUI gameOverUI;
+    
+    private int currentHealth; 
 
     private void Start()
     {
@@ -24,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        // Aquí puedes agregar lógica para manejar la muerte del jugador
-        Debug.Log("Player died.");
+        Destroy(gameObject);
+        gameOverUI.ShowGameOverMenu();
     }
 }
